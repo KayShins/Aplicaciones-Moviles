@@ -15,7 +15,7 @@
 
     <ion-card-header>
 
-      <ion-card-title>Bienvenido Alumno!</ion-card-title>
+      <ion-card-title>¡Bienvenido Alumno!</ion-card-title>
 
     </ion-card-header>
 
@@ -39,13 +39,14 @@
 
       <ion-button expand="block" (click)="ingresar()">Ingresar</ion-button>
 
+      <ion-button expand="block" (click)="Recuperar()">Recuperar</ion-button>
+      <ion-progress-bar [buffer]="buffer" [value]="progress"></ion-progress-bar>
     </ion-card-content>
 
   </ion-card>
 
 
-  <ion-button expand="block" (click)="Recuperar()">Restablecer Contraseña</ion-button>
-  <ion-progress-bar [buffer]="buffer" [value]="progress"></ion-progress-bar>
+  
 </ion-content>
 
 <ion-footer>
