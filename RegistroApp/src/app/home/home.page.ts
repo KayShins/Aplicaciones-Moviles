@@ -28,7 +28,8 @@ export class HomePage implements AfterViewInit {
   constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state) {
-      this.usuario = navigation.extras.state['username'];
+      this.usuario = navigation.extras.state['usuario'];
+      console.log(this.usuario);
     }
   }
 
@@ -94,9 +95,6 @@ export class HomePage implements AfterViewInit {
 
   Inicio(){
     this.router.navigate(['/login'], {
-
-      
-
     });
   }
 }

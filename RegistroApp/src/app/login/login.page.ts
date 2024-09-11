@@ -21,9 +21,7 @@ export class LoginPage {
 
   async ingresar() {
     // Validaciones
-    if(this.usuario==='Juan' && this.password==='1234'){
-      alert('LoginExitoso');
-      this.router.navigate(['/home']);
+    if(this.usuario==='Juan'&& this.password==='1234'){
       const loading = await this.loadingController.create({
         message: 'Iniciando sesión...',
         spinner: 'circles'
@@ -57,15 +55,15 @@ export class LoginPage {
   }
 
   async Recuperar() {
-    if (this.usuario==='Juan') {
-      alert('Usuario Encontrado');
+    if (this.usuario==='Juan'){
+      this.mostrarAlerta('Mensaje','Usuario ha sido encontrado');
       this.router.navigate(['/recuperar'], {
         state: {
           username: this.usuario,
         },
       });
     }else{
-      await this.mostrarAlerta('Error', 'El usuario es incorrecto');
+      await this.mostrarAlerta('Error','El Usuario no ha sido encontrado');
       return;
     }
     
