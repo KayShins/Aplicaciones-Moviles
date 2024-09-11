@@ -21,40 +21,29 @@ export class LoginPage {
 
   async ingresar() {
     // Validaciones
-    if (!this.validarUsuario(this.usuario)) {
-      await this.mostrarAlerta('Error', 'El usuario debe tener entre 3 y 8 caracteres alfanuméricos.');
-      return;
-    }
-
-    if (!this.validarPassword(this.password)) {
-      await this.mostrarAlerta('Error', 'La contraseña debe ser numérica y tener 4 dígitos.');
-      return;
-    }
-
-    const loading = await this.loadingController.create({
-      message: 'Iniciando sesión...',
-      spinner: 'circles'
-    });
-    await loading.present();
-
-    setTimeout(() => {
-      loading.dismiss();
-      this.router.navigate(['/home'], {
-        state: {
-          username: this.usuario,
-          password: this.password,
-        },
+    if(this.usuario==='Juan' && this.password==='1234'){
+      alert('LoginExitoso');
+      this.router.navigate(['/home']);
+      const loading = await this.loadingController.create({
+        message: 'Iniciando sesión...',
+        spinner: 'circles'
       });
-    }, 2000); 
-  }
-
+      await loading.present();
   
-  validarUsuario(usuario: string): boolean {
-    return /^[a-zA-Z0-9]{3,8}$/.test(usuario);
-  }
+      setTimeout(() => {
+        loading.dismiss();
+        this.router.navigate(['/home'], {
+          state: {
+            username: this.usuario,
+            password: this.password,
+          },
+        });
+      }, 2000); 
+    }else{
+      alert('Usuario o contraseña Incorrecta')
+    }
 
-  validarPassword(password: string): boolean {
-    return /^\d{4}$/.test(password);
+    
   }
 
   // Mostrar una alerta
@@ -68,14 +57,17 @@ export class LoginPage {
   }
 
   async Recuperar() {
-    if (!this.validarUsuario(this.usuario)) {
-      await this.mostrarAlerta('Error', 'El usuario debe tener entre 3 y 8 caracteres alfanuméricos.');
+    if (this.usuario==='Juan') {
+      alert('Usuario Encontrado');
+      this.router.navigate(['/recuperar'], {
+        state: {
+          username: this.usuario,
+        },
+      });
+    }else{
+      await this.mostrarAlerta('Error', 'El usuario es incorrecto');
       return;
     }
-    this.router.navigate(['/recuperar'], {
-      state: {
-        username: this.usuario,
-      },
-    });
+    
   }
 }

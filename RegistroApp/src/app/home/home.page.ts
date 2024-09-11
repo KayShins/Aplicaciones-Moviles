@@ -9,7 +9,7 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements AfterViewInit {
-  usuario: string = '';  // Define el tipo como string
+  usuario: string = 'Juan';  // Define el tipo como string
   niveles: any[] = [
     {id: 1, nivel: "Basica Incompleta"},
     {id: 2, nivel: "Basica Completa"},

@@ -9,7 +9,7 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['./recuperar.page.scss'],
 })
 export class RecuperarPage implements OnInit {
-  usuario: string = '';
+  usuario: string = 'Juan';
   
 
   constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
