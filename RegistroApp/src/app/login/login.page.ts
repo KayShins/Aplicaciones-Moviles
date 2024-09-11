@@ -21,41 +21,30 @@ export class LoginPage {
 
   async ingresar() {
     // Validaciones
-    if (!this.validarUsuario(this.usuario)) {
-      await this.mostrarAlerta('Error', 'El usuario debe tener entre 3 y 8 caracteres alfanuméricos.');
-      return;
-    }
-
-    if (!this.validarPassword(this.password)) {
-      await this.mostrarAlerta('Error', 'La contraseña debe ser numérica y tener 4 dígitos.');
-      return;
-    }
-
-    const loading = await this.loadingController.create({
-      message: 'Iniciando sesión...',
-      spinner: 'circles'
-    });
-    await loading.present();
-
-    setTimeout(() => {
-      loading.dismiss();
-      this.router.navigate(['/home'], {
-        state: {
-          username: this.usuario,
-          password: this.password,
-        },
+    if(this.usuario==='Juan'&& this.password==='1234'){
+      const loading = await this.loadingController.create({
+        message: 'Iniciando sesión...',
+        spinner: 'circles'
       });
-    }, 2000); 
-  }
-
+      await loading.present();
   
-  validarUsuario(usuario: string): boolean {
-    return /^[a-zA-Z0-9]{3,8}$/.test(usuario);
+      setTimeout(() => {
+        loading.dismiss();
+        this.router.navigate(['/home'], {
+          state: {
+            usuario: this.usuario,
+            password: this.password,
+          },
+        });
+      }, 2000);
+
+    }else{
+      this.mostrarAlerta('Error','El usuario o contraseña son incorrectos');
+      return;
+
+    }
   }
 
-  validarPassword(password: string): boolean {
-    return /^\d{4}$/.test(password);
-  }
 
   // Mostrar una alerta
   async mostrarAlerta(titulo: string, mensaje: string) {
@@ -68,14 +57,17 @@ export class LoginPage {
   }
 
   async Recuperar() {
-    if (!this.validarUsuario(this.usuario)) {
-      await this.mostrarAlerta('Error', 'El usuario debe tener entre 3 y 8 caracteres alfanuméricos.');
+    if (this.usuario==='Juan'){
+      this.mostrarAlerta('Mensaje','Usuario a sido encontrado');
+      this.router.navigate(['/recuperar'], {
+        state: {
+          username: this.usuario,
+        },
+      });
+    }else{
+      await this.mostrarAlerta('Error','El Usuario no ha sido encontrado');
       return;
     }
-    this.router.navigate(['/recuperar'], {
-      state: {
-        username: this.usuario,
-      },
-    });
+    
   }
 }
