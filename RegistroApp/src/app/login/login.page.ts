@@ -38,7 +38,7 @@ export class LoginPage {
         });
       }, 2000); 
     }else{
-      alert('Usuario o contraseña Incorrecta')
+      alert('Usuario o contraseña incorrecta')
     }
 
     

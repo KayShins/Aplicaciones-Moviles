@@ -28,7 +28,7 @@ export class HomePage implements AfterViewInit {
   constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state) {
-      this.usuario = navigation.extras.state['usuario'];
+      this.usuario = navigation.extras.state['username'];
       console.log(this.usuario);
     }
   }
@@ -40,7 +40,7 @@ export class HomePage implements AfterViewInit {
   animateTitle() {
     const titleElement = document.querySelector('.title-animation');
 
-    if (titleElement) {  // Asegúrate de que titleElement no es null
+    if (titleElement) {  // Que titleElement no sea null
       const titleAnimation = this.animationCtrl.create()
         .addElement(titleElement)
         .duration(2500)
