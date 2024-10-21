@@ -1,33 +1,26 @@
 <ion-card class="ion-text-center">
   <ion-card-header>
     <ion-card-title>Mis Datos</ion-card-title>
-    <ion-card-subtitle>Usuario:{{username.usuario}}</ion-card-subtitle>
   </ion-card-header>  
   <ion-card-content>
     <ion-list>
       <ion-item>
-        <ion-input label="Rut" placeholder="Ingrese Rut"></ion-input>
+        <ion-input label="Rut" [(ngModel)]="data.rut" placeholder="Ingrese Rut"></ion-input>
       </ion-item>
-      <ion-item >
-        <ion-input #nombre_ label="Nombre" [(ngModel)]="data.nombre" placeholder="Ingrese Nombre"></ion-input>
-      </ion-item>
-    
-      <ion-item >
-        <ion-input #apellido_ label="Apellido" [(ngModel)]="data.apellido" placeholder="Ingrese Apellido"></ion-input>
-      </ion-item>
-    
-      <ion-item class="ion-padding-horizontal">
-        <ion-label position="stacked" class="ion-padding-bottom">Educación</ion-label>
-        <ion-select placeholder="Seleccione nivel" [(ngModel)]="data.education">
-          <ion-select-option *ngFor="let niv of niveles" [value]="niv.id">{{niv.nivel}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-    
       <ion-item>
-        <label>Fecha Nacimiento</label>
-        <input  matInput [matDatepicker]="picker" [(ngModel)]="data.fecha_nacimiento" readonly>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <ion-input label="Nombre" [(ngModel)]="data.nombre" placeholder="Ingrese Nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Edad" type="number" [(ngModel)]="data.edad" placeholder="Ingrese Edad"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Dirección" [(ngModel)]="data.direccion" placeholder="Ingrese Dirección"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Correo Electrónico" [(ngModel)]="data.correoElectronico" placeholder="Ingrese Correo Electrónico"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Teléfono" [(ngModel)]="data.telefono" placeholder="Ingrese Teléfono"></ion-input>
       </ion-item>
       <ion-grid>
         <ion-row>
@@ -36,18 +29,11 @@
               Limpiar
             </ion-button>
           </ion-col>
-          <ion-col col-6>
-            <ion-button shape="block" (click)="mostrar()">
-              Mostrar
-            </ion-button>
-          </ion-col>
-          
         </ion-row>
-        <ion-button shape="block" (click)="mostrar()">
+        <ion-button shape="block" (click)="guardar()">
           Guardar
         </ion-button>
       </ion-grid>
-  </ion-list>
-  
+    </ion-list>
   </ion-card-content>
 </ion-card>

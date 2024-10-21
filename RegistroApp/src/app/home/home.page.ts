@@ -11,20 +11,6 @@ import { AnimationController } from '@ionic/angular';
 export class HomePage implements AfterViewInit {
   segmento = "misDatos";
   username = { usuario: '', password: '' };  // Define el tipo como string
-  niveles: any[] = [
-    {id: 1, nivel: "Basica Incompleta"},
-    {id: 2, nivel: "Basica Completa"},
-    {id: 3, nivel: "Media Incompleta"},
-    {id: 4, nivel: "Media Completa"},
-    {id: 5, nivel: "Media Incompleta"},
-    {id: 6, nivel: "Superior Completa"}
-  ];
-  data: any = {
-    nombre: "",
-    apellido: "",
-    education: "",
-    nacimiento: ""
-  };
 
   constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
     const navigation = this.router.getCurrentNavigation();
@@ -72,27 +58,8 @@ export class HomePage implements AfterViewInit {
       ]);
 
     inputAnimation.play();
-
-    for (let key in this.data) {
-      this.data[key] = '';
-    }
   }
 
-  mostrar() {
-    if (this.data.nombre !== "" && this.data.apellido !== "") {
-      this.presentAlert("Usuario", "Su nombre es " + this.data.nombre + " " + this.data.apellido);
-    }
-  }
-
-  async presentAlert(titulo: string, message: string) {
-    const alert = await this.alertController.create({
-      header: titulo,
-      message: message,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
 
   Inicio(){
     this.router.navigate(['/login'], {

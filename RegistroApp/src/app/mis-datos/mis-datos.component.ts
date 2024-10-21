@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import {ElementRef, ViewChild} from '@angular/core';
-
+import { SqliteService } from '../services/sqlite.service';
 import type { Animation } from '@ionic/angular';
 
 
@@ -21,22 +21,15 @@ export class MisDatosComponent  implements AfterViewInit {
   private animation_nombre: Animation | undefined;
   
   username = { usuario: '', password: '' }; // Inicializa como objeto
-  niveles: any[] = [
-    {id: 1, nivel: "Basica Incompleta"},
-    {id: 2, nivel: "Basica Completa"},
-    {id: 3, nivel: "Media Incompleta"},
-    {id: 4, nivel: "Media Completa"},
-    {id: 5, nivel: "Media Incompleta"},
-    {id: 6, nivel: "Superior Completa"}
-  ];
-  data: any = {
-    nombre: "",
-    apellido: "",
-    education: "",
-    nacimiento: ""
-  };
-
-  constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
+  data: any={
+    rut :"",
+    nombre:"",
+    edad : "",
+    direccion : "",
+    correo_electronico :"",
+    telefono : ""
+  }
+  constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController, private sqlite : SqliteService) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state) {
       this.username = { usuario: navigation.extras.state['username'], password: navigation.extras.state['password'] };
@@ -81,17 +74,8 @@ export class MisDatosComponent  implements AfterViewInit {
       ]);
 
     inputAnimation.play();
-
-    for (let key in this.data) {
-      this.data[key] = '';
-    }
   }
 
-  mostrar() {
-    if (this.data.nombre !== "" && this.data.apellido !== "") {
-      this.presentAlert("Usuario", "Su nombre es " + this.data.nombre + " " + this.data.apellido);
-    }
-  }
 
   async presentAlert(titulo: string, message: string) {
     const alert = await this.alertController.create({
@@ -106,9 +90,25 @@ export class MisDatosComponent  implements AfterViewInit {
   Inicio(){
     this.router.navigate(['/login'], {
 
-      
+      });
+  }
 
-    });
+  async guardar(){
+    const {rut, nombre,edad, direccion,correo_electronico, telefono} = this.data;
+
+    if(!rut || !nombre || !edad || !direccion || !correo_electronico||!telefono === null){
+      this.presentAlert('Error','Todos los Campos estan vacios');
+      return;
+    }
+    try{
+      await this.sqlite.create(rut,nombre,edad,direccion,correo_electronico,telefono);
+      this.presentAlert('Exito', 'Alumno Guardado correctamente');
+      this.limpiar();
+    } catch(Error){
+      this.presentAlert('Error', 'No se Guardaron los datos');
+      console.error(Error);
+    }
   }
 
 }
+//||

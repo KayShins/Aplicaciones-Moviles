@@ -1,0 +1,38 @@
+{
+    "database": "alumnos.db",
+    "version": 1,
+    "encrypted" : false,
+    "mode" : "full",
+    "tables":[
+        {
+            "name":"alumnos",
+            "schema":[
+                {
+                    "colum": "rut",
+                    "value": "TEXT NOT NULL PRIMARY KEY"
+                },
+                {
+                    "colum": "nombre",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "colum": "edad",
+                    "value": "NUMBER NOT NULL"
+                },
+                {
+                    "colum": "direccion",
+                    "value":"TEXT NOT NULL"
+                },
+                {
+                    "colum": "correo_electronico",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "colum": "telefono",
+                    "value": "TEXT NOT NULL"
+                }
+
+            ]
+        }
+    ]
+}
