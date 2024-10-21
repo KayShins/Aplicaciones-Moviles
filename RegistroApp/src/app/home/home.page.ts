@@ -9,7 +9,8 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements AfterViewInit {
-  usuario: string = 'Juan';  // Define el tipo como string
+  segmento = "misDatos";
+  username = { usuario: '', password: '' };  // Define el tipo como string
   niveles: any[] = [
     {id: 1, nivel: "Basica Incompleta"},
     {id: 2, nivel: "Basica Completa"},
@@ -28,8 +29,8 @@ export class HomePage implements AfterViewInit {
   constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state) {
-      this.usuario = navigation.extras.state['username'];
-      console.log(this.usuario);
+      this.username = navigation.extras.state['username'];
+      console.log(this.username);
     }
   }
 
@@ -95,6 +96,18 @@ export class HomePage implements AfterViewInit {
 
   Inicio(){
     this.router.navigate(['/login'], {
+    });
+  }
+
+  CambiodeSegmento(event: any) {
+    this.segmento = event.detail.value;
+  }
+  
+  navegarAMisDatos() {
+    this.router.navigate(['/mis-datos'], {
+      state: {
+        username: this.username,
+      },
     });
   }
 }

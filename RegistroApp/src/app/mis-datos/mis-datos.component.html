@@ -5,6 +5,9 @@
   </ion-card-header>  
   <ion-card-content>
     <ion-list>
+      <ion-item>
+        <ion-input label="Rut" placeholder="Ingrese Rut"></ion-input>
+      </ion-item>
       <ion-item >
         <ion-input #nombre_ label="Nombre" [(ngModel)]="data.nombre" placeholder="Ingrese Nombre"></ion-input>
       </ion-item>
@@ -38,7 +41,11 @@
               Mostrar
             </ion-button>
           </ion-col>
+          
         </ion-row>
+        <ion-button shape="block" (click)="mostrar()">
+          Guardar
+        </ion-button>
       </ion-grid>
   </ion-list>
   
