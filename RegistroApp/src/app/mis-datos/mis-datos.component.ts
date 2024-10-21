@@ -2,42 +2,56 @@ import { Component, AfterViewInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
-import {ElementRef, ViewChild} from '@angular/core';
+import { ElementRef, ViewChild } from '@angular/core';
 import { SqliteService } from '../services/sqlite.service';
 import type { Animation } from '@ionic/angular';
+import { defineCustomElements as jeepSqlite } from 'jeep-sqlite/loader';
+import { IonInput } from '@ionic/angular';
 
-
+jeepSqlite(window);
+// ||
 @Component({
   selector: 'app-mis-datos',
   templateUrl: './mis-datos.component.html',
   styleUrls: ['./mis-datos.component.scss'],
 })
-export class MisDatosComponent  implements AfterViewInit {
+export class MisDatosComponent {
   @ViewChild('titulo', { read: ElementRef }) titulo: ElementRef<HTMLIonTitleElement> | undefined;
-  @ViewChild('nombre_', { read: ElementRef }) nombre_: ElementRef<HTMLIonInputElement> | undefined;
-  @ViewChild('apellido_', { read: ElementRef }) apellido_: ElementRef<HTMLIonInputElement> | undefined;
+  @ViewChild('nombre_', { read: ElementRef }) nombre_: ElementRef<IonInput> | undefined;
+  @ViewChild('apellido_', { read: ElementRef }) apellido_: ElementRef<IonInput> | undefined;
 
   private animation: Animation | undefined;
   private animation_nombre: Animation | undefined;
-  
+
   username = { usuario: '', password: '' }; // Inicializa como objeto
-  data: any={
-    rut :"",
-    nombre:"",
-    edad : "",
-    direccion : "",
-    correo_electronico :"",
-    telefono : ""
-  }
-  constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController, private sqlite : SqliteService) {
+  public nombre: string;
+  public edad: string;
+  public rut: string;
+  public ruteliminar: string;
+  public direccion: string;
+  public correo: string;
+  public telefono: string;
+  public alumnos: string[] = [];
+
+  constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController, private sqlite: SqliteService) {
+    this.nombre = '';
+    this.rut = '';
+    this.ruteliminar = '';
+    this.edad = '';
+    this.direccion = '';
+    this.correo = '';
+    this.telefono = '';
+    this.alumnos = [];
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state) {
       this.username = { usuario: navigation.extras.state['username'], password: navigation.extras.state['password'] };
     }
   }
 
-  ngAfterViewInit() {
+  ionViewWillEnter() {
+    this.read();
     this.animateTitle();
+    this.sqlite.init();
   }
 
   animateTitle() {
@@ -60,8 +74,16 @@ export class MisDatosComponent  implements AfterViewInit {
   }
 
   limpiar() {
+    this.rut = '';
+    this.nombre = '';
+    this.edad = '';
+    this.direccion = '';
+    this.correo = '';
+    this.telefono = '';
     const inputs = document.querySelectorAll('ion-input');
-
+    inputs.forEach((input: HTMLIonInputElement) => {
+      input.value = ''; // Limpia el valor de cada input
+    });
     const inputAnimation = this.animationCtrl.create()
       .addElement(inputs)
       .duration(1000)
@@ -76,7 +98,6 @@ export class MisDatosComponent  implements AfterViewInit {
     inputAnimation.play();
   }
 
-
   async presentAlert(titulo: string, message: string) {
     const alert = await this.alertController.create({
       header: titulo,
@@ -87,28 +108,67 @@ export class MisDatosComponent  implements AfterViewInit {
     await alert.present();
   }
 
-  Inicio(){
-    this.router.navigate(['/login'], {
-
-      });
+  Inicio() {
+    this.router.navigate(['/login']);
   }
 
-  async guardar(){
-    const {rut, nombre,edad, direccion,correo_electronico, telefono} = this.data;
-
-    if(!rut || !nombre || !edad || !direccion || !correo_electronico||!telefono === null){
-      this.presentAlert('Error','Todos los Campos estan vacios');
-      return;
+  guardar() {
+    if (!this.rut.trim() || !this.nombre.trim() || !this.edad.trim() || !this.direccion.trim() || !this.correo.trim() || !this.telefono.trim()) {
+      this.presentAlert("Error", "Todos los campos son requeridos y no pueden estar vacíos.");
+      return; // Terminar la función si hay campos vacíos
     }
-    try{
-      await this.sqlite.create(rut,nombre,edad,direccion,correo_electronico,telefono);
-      this.presentAlert('Exito', 'Alumno Guardado correctamente');
+    this.sqlite.create(
+      this.rut.toLocaleUpperCase(),
+      this.nombre.toLocaleUpperCase(),
+      this.edad.toLocaleUpperCase(),
+      this.direccion.toLocaleUpperCase(),
+      this.correo.toLocaleUpperCase(),
+      this.telefono.toLocaleUpperCase()
+    ).then((changes) => {
+      console.log(changes);
+      console.log("Creado");
+      this.read();
       this.limpiar();
-    } catch(Error){
-      this.presentAlert('Error', 'No se Guardaron los datos');
-      console.error(Error);
-    }
+    }).catch(err => {
+      console.error(err);
+      this.presentAlert("Error", "El rut es unico por lo tanto no puede ingresar el mismo rut dos");
+    });
   }
 
+  read() {
+    this.sqlite.read().then((alumnos: string[]) => {
+      this.alumnos = alumnos;
+      console.log("Leído");
+      console.log(this.alumnos);
+    }).catch(err => {
+      console.error(err);
+      console.error("Error al leer");
+    });
+  }
+
+  update(nombre: string) {
+    this.sqlite.update(this.nombre.toLocaleUpperCase(), nombre).then((changes) => {
+      console.log(changes);
+      console.log("Actualizado");
+      this.read();  // Leer nuevamente para obtener la lista actualizada
+    }).catch(err => {
+      console.error(err);
+      console.error("Error al actualizar");
+    });
+  }
+
+  borrado() {
+    if (!this.ruteliminar) {
+      this.presentAlert("Error", "Debe ingresar un RUT para eliminar.");
+      return; // Detener la ejecución si ruteliminar está vacío
+    }
+  
+    this.sqlite.delete(this.ruteliminar).then(() => {
+      this.presentAlert("Exito", "Datos Eliminados Correctamente.");
+      this.limpiar(); // Limpia los campos después de la eliminación
+      this.read(); // Lee los datos actualizados
+    }).catch(err => {
+      console.error("Error al eliminar datos", err);
+    });
+  }
 }
-//||

@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="CambiodeSegmento($event)" value="misDatos">
-    <ion-segment-button value="experienciaLaboral">
-      <ion-label>Experiencia Laboral</ion-label>      
+  <ion-segment (ionChange)="CambiodeSegmento($event)">
+    <ion-segment-button value="consultar-datos">
+      <ion-label>Consultar Datos</ion-label>
     </ion-segment-button>
     <ion-segment-button value="certificaciones">
       <ion-label>Certificaciones</ion-label>
@@ -18,8 +18,12 @@
       <ion-label>Mis Datos</ion-label>
     </ion-segment-button>
   </ion-segment>
-
-  <app-mis-datos *ngIf="segmento === 'misDatos'"></app-mis-datos>
+  <ng-container *ngIf="segmento === 'consultar-datos'">
+    <app-consultar-datos></app-consultar-datos>
+  </ng-container>
+  <ng-container *ngIf="segmento === 'misDatos'">
+    <app-mis-datos></app-mis-datos>
+  </ng-container>
   <ion-button expand="block" color="warning" (click)="Inicio()">Volver al inicio</ion-button>
 </ion-content>
 

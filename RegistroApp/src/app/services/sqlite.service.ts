@@ -99,8 +99,11 @@ export class SqliteService {
     return this.dbName;
   }
 
-  async create(rut : string, nombre : string,edad : number, direccion: string, correo_electronico: string, telefono : string){
-    let sql = 'INSERT INTO alumnos(rut,nombre, edad,direccion, correo_electronico,telefono) VALUES(?,?,?,?,?,?)';
+  async create(rut : string, nombre :string, edad : string,direccion:string, correo : string , telefono : string){
+    if (!rut.trim() || !nombre.trim() || !edad.trim() || !direccion.trim() || !correo.trim() || !telefono.trim()) {
+      return Promise.reject(new Error("Todos los campos son requeridos y no pueden estar vacíos."));
+    }
+    let sql = 'INSERT INTO alumnos (rut, nombre,edad,direccion,correo,telefono) VALUES(?,?,?,?,?,?)';
     const dbName = await this.getDbName();
     return CapacitorSQLite.executeSet({
       database: dbName,
@@ -112,7 +115,7 @@ export class SqliteService {
             nombre,
             edad,
             direccion,
-            correo_electronico,
+            correo,
             telefono
           ]
         }
@@ -140,16 +143,16 @@ export class SqliteService {
 
       for (let index = 0; index < response.values.length; index ++){
         const alumno = response.values[index];
-        alumnos.push(alumno);
+        alumnos.push(alumno.rut, alumno.nombre, alumno.edad,alumno.direccion,
+          alumno.correo,alumno.telefono
+        );
       }
       return alumnos;
     }).catch(err => Promise.reject(err))
   }
 
-  async update(newrut: string, originalrut: string, newnombre : string , originalnombre:string
-    ,newedad: number , originaledad:number, newdireccion:string, originaldireccion:string,
-    newCorreo_Electronico: string, originalCorreo_Electronico:string, newtelefono:string,originaltelefono : string){
-    let sql= 'UPDATE alumnos SET rut=? , Nombre = ? , Edad = ? , Direccion =?, Correo_Electronico = ?, Telefono =? Where rut=?';
+  async update(newnombre: string, originalnombre: string){
+    let sql= 'UPDATE alumnos SET nombre=? Where nombre=?';
     const dbName = await this.getDbName();
     return CapacitorSQLite.executeSet({
       database: dbName,
@@ -157,13 +160,8 @@ export class SqliteService {
         {
           statement : sql,
           values:[
-            newrut,
             newnombre,
-            newedad,
-            newdireccion,
-            newCorreo_Electronico,
-            newtelefono,
-            originalrut
+            originalnombre
           ]
         }
       ]
@@ -193,5 +191,40 @@ export class SqliteService {
       }
       return changes;
     }).catch(err => Promise.reject(err))
+  }
+
+  async obtenerAlumnoPorRut(rut: string) {
+    const sql = 'SELECT * FROM alumnos WHERE rut = ?';
+    const dbName = await this.getDbName();
+    
+    return CapacitorSQLite.query({
+      database: dbName,
+      statement: sql,
+      values: [rut]  // Asegúrate de pasar el RUT como valor
+    }).then((response: capSQLiteValues) => {
+      if (response.values.length > 0) {
+        // Devuelve todos los datos del alumno en un objeto
+        return response.values[0];
+      }
+      return null; // No se encontró el RUT
+    }).catch(err => Promise.reject(err));
+  }
+
+  async editarAlumno(rut: string, nuevonombre: string, nuevaedad: string, nuevadireccion: string, nuevocorreo: string, nuevotelefono: string) {
+    const sql = 'UPDATE alumnos SET nombre = ?, edad = ?, direccion = ?, correo = ?, telefono = ? WHERE rut = ?';
+    const dbName = await this.getDbName();
+    
+    return CapacitorSQLite.executeSet({
+      database: dbName,
+      set: [{
+        statement: sql,
+        values: [nuevonombre, nuevaedad, nuevadireccion, nuevocorreo, nuevotelefono, rut]
+      }]
+    }).then((changes: capSQLiteChanges) => {
+      if (this.isWeb) {
+        CapacitorSQLite.saveToStore({ database: dbName });
+      }
+      return changes;
+    }).catch(err => Promise.reject(err));
   }
 }

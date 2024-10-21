@@ -68,6 +68,7 @@ export class HomePage implements AfterViewInit {
 
   CambiodeSegmento(event: any) {
     this.segmento = event.detail.value;
+    console.log(this.segmento); // Verifica el valor del segmento
   }
   
   navegarAMisDatos() {

@@ -1,27 +1,28 @@
 #container {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  margin: auto; // Esto centra el contenedor horizontalmente
+  height: 100vh; // Toma el 100% de la altura de la vista para centrar verticalmente
+  display: flex; // Usa Flexbox para centrar contenido
+  flex-direction: column; // Alinea los elementos en columna
+  justify-content: center; // Centra verticalmente
+  align-items: center; // Centra horizontalmente
+  background-color: rgba(0, 0, 0, 0.5); // Fondo oscuro para mejorar contraste
 }
 
 #container strong {
   font-size: 20px;
   line-height: 26px;
+  color: white; // Asegúrate de que el texto sea visible
 }
 
 #container p {
   font-size: 16px;
   line-height: 22px;
-
-  color: #8c8c8c;
-
+  color: white; // Mantén el texto visible
   margin: 0;
 }
 
 #container a {
   text-decoration: none;
+  color: white; // Asegúrate de que el enlace sea visible
 }

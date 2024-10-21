@@ -8,6 +8,7 @@ import { SqliteService } from './services/sqlite.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
   public isWeb : boolean;
   public load : boolean;
   constructor(private platform: Platform,

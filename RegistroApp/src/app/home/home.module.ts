@@ -7,7 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MisDatosComponent } from '../mis-datos/mis-datos.component';
-
+import { ConsultarDatosComponent } from '../consultar-datos/consultar-datos.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +17,6 @@ import { MisDatosComponent } from '../mis-datos/mis-datos.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  declarations: [HomePage,MisDatosComponent]
+  declarations: [HomePage,MisDatosComponent, ConsultarDatosComponent]
 })
 export class HomePageModule {}
