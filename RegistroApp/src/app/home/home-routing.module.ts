@@ -10,7 +10,7 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
-        path:'misDatos',
+        path:'mis-datos',
         component:MisDatosComponent
       },
       {

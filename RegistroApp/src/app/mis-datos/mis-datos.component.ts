@@ -17,8 +17,8 @@ jeepSqlite(window);
 })
 export class MisDatosComponent {
   @ViewChild('titulo', { read: ElementRef }) titulo: ElementRef<HTMLIonTitleElement> | undefined;
-  @ViewChild('nombre_', { read: ElementRef }) nombre_: ElementRef<IonInput> | undefined;
-  @ViewChild('apellido_', { read: ElementRef }) apellido_: ElementRef<IonInput> | undefined;
+  @ViewChild('rut_', { read: ElementRef }) rut_: ElementRef<IonInput> | undefined;
+  @ViewChild('nombre_:', { read: ElementRef }) nombre_: ElementRef<IonInput> | undefined;
 
   private animation: Animation | undefined;
   private animation_nombre: Animation | undefined;
@@ -160,13 +160,13 @@ export class MisDatosComponent {
   borrado() {
     if (!this.ruteliminar) {
       this.presentAlert("Error", "Debe ingresar un RUT para eliminar.");
-      return; // Detener la ejecución si ruteliminar está vacío
+      return; 
     }
   
     this.sqlite.delete(this.ruteliminar).then(() => {
       this.presentAlert("Exito", "Datos Eliminados Correctamente.");
-      this.limpiar(); // Limpia los campos después de la eliminación
-      this.read(); // Lee los datos actualizados
+      this.limpiar(); 
+      this.read(); 
     }).catch(err => {
       console.error("Error al eliminar datos", err);
     });

@@ -9,7 +9,7 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements AfterViewInit {
-  segmento = "misDatos";
+  segment = "mis-datos";
   username = { usuario: '', password: '' };  // Define el tipo como string
 
   constructor(private router: Router, public alertController: AlertController, private animationCtrl: AnimationController) {
@@ -66,9 +66,8 @@ export class HomePage implements AfterViewInit {
     });
   }
 
-  CambiodeSegmento(event: any) {
-    this.segmento = event.detail.value;
-    console.log(this.segmento); // Verifica el valor del segmento
+  onChangeSegment(event: any){
+    this.segment = event.detail.value;
   }
   
   navegarAMisDatos() {

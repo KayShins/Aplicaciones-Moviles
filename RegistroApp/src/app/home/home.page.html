@@ -7,20 +7,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="CambiodeSegmento($event)" value="buttons">
-    <ion-segment-button value="consultar-datos">
-      <ion-label>Consultar Datos</ion-label>
+  <ion-segment (ionChange)="onChangeSegment($event)" value="buttons">
+    <ion-segment-button value="consultar-datos" >
+      <ion-label>Consultar Datos de Alumno</ion-label>      
     </ion-segment-button>
     <ion-segment-button value="usuarios">
-      <ion-label>usuarios-registrados</ion-label>
+      <ion-label>Compañias</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="misDatos">
+    <ion-segment-button value="mis-datos">
       <ion-label>Mis Datos</ion-label>
     </ion-segment-button>
   </ion-segment>
-    <app-consultar-datos *ngIf="segmento === 'consultar-datos'"></app-consultar-datos>
-    <app-mis-datos *ngIf="segmento === 'misDatos'"></app-mis-datos>
-    <app-usuarios *ngIf="segmento === 'usuarios'"></app-usuarios>
+  <app-consultar-datos *ngIf="segment === 'consultar-datos'"></app-consultar-datos>
+  <app-usuarios *ngIf="segment === 'usuarios'"></app-usuarios>
+  <app-mis-datos *ngIf="segment === 'mis-datos'"></app-mis-datos>
   <router-outlet></router-outlet>
 </ion-content>
 

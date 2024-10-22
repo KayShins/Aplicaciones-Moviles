@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">RUT</ion-label>
-    <ion-input [(ngModel)]="rut" type="text" placeholder="Ingresa el RUT"></ion-input>
+  <ion-item class="rut">
+    
+    <ion-input label="Ingrese el Rut : " [(ngModel)]="rut" type="text" placeholder="Ingresa el RUT a consultar"></ion-input>
   </ion-item>
 
-  <ion-button expand="full" (click)="consultarDatos()" color="primary">
+  <ion-button class="botonguardar" expand="full" (click)="consultarDatos()" color="primary">
     Consultar
   </ion-button>
 
@@ -23,7 +23,7 @@
       <ion-card-content>
 
         <ion-item>
-          <ion-label position="floating">nombre</ion-label>
+          <ion-label position="floating">Nombre</ion-label>
           <ion-input [(ngModel)]="nombre"></ion-input>
         </ion-item>
         <ion-item>
@@ -62,30 +62,6 @@
   </div>
 </ion-content>
 
-<style>
-  .alumno-info {
-    margin-top: 20px;
-  }
-
-  .alumno-title {
-    margin-bottom: 10px;
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .error-message {
-    color: red;
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .button-group {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  ion-button {
-    margin-bottom: 10px;
-  }
-</style>
+<ion-footer>
+  Creado por Lesther Araya y Alejandra Guzman
+</ion-footer>

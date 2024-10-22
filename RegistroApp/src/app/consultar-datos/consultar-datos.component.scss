@@ -1,0 +1,41 @@
+.alumno-info {
+    margin-top: 20px;
+  
+}
+
+.alumno-title {
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+ion-button {
+    margin-bottom: 10px;
+}
+
+ion-header {
+    ion-toolbar {
+      background-color: #3880ff; /* Color de fondo de la barra superior */
+      color: white;
+  
+      ion-title {
+        text-align: center; /* Centra el título */
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+}
+
+  
