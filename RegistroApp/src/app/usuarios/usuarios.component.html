@@ -1,0 +1,20 @@
+<div class="usuarios-registrados">
+  <h2>Usuarios Registrados</h2>
+  
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  <ion-list *ngIf="usuarios && usuarios.length > 0">
+    <ion-item *ngFor="let usuario of usuarios">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ usuario.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p><strong>Email:</strong> {{ usuario.email }}</p>
+          <p><strong>Teléfono:</strong> {{ usuario.phone }}</p>
+          <p><strong>Compañía:</strong> {{ usuario.company.name }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  <p *ngIf="usuarios && usuarios.length === 0">No se encontraron usuarios.</p>
+</div>

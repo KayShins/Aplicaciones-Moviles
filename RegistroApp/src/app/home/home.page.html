@@ -7,26 +7,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="CambiodeSegmento($event)">
+  <ion-segment (ionChange)="CambiodeSegmento($event)" value="buttons">
     <ion-segment-button value="consultar-datos">
       <ion-label>Consultar Datos</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="certificaciones">
-      <ion-label>Certificaciones</ion-label>
+    <ion-segment-button value="usuarios">
+      <ion-label>usuarios-registrados</ion-label>
     </ion-segment-button>
     <ion-segment-button value="misDatos">
       <ion-label>Mis Datos</ion-label>
     </ion-segment-button>
   </ion-segment>
-  <ng-container *ngIf="segmento === 'consultar-datos'">
-    <app-consultar-datos></app-consultar-datos>
-  </ng-container>
-  <ng-container *ngIf="segmento === 'misDatos'">
-    <app-mis-datos></app-mis-datos>
-  </ng-container>
-  <ion-button expand="block" color="warning" (click)="Inicio()">Volver al inicio</ion-button>
+    <app-consultar-datos *ngIf="segmento === 'consultar-datos'"></app-consultar-datos>
+    <app-mis-datos *ngIf="segmento === 'misDatos'"></app-mis-datos>
+    <app-usuarios *ngIf="segmento === 'usuarios'"></app-usuarios>
+  <router-outlet></router-outlet>
 </ion-content>
 
-<ion-footer>
-  Creado por Lesther Araya
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Creado por Lesther Araya y Alejandra Guzman</ion-title>
+  </ion-toolbar>
 </ion-footer>

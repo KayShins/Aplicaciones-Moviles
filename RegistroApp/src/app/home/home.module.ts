@@ -8,6 +8,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MisDatosComponent } from '../mis-datos/mis-datos.component';
 import { ConsultarDatosComponent } from '../consultar-datos/consultar-datos.component';
+import { UsuariosComponent } from '../usuarios/usuarios.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +18,6 @@ import { ConsultarDatosComponent } from '../consultar-datos/consultar-datos.comp
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  declarations: [HomePage,MisDatosComponent, ConsultarDatosComponent]
+  declarations: [HomePage,MisDatosComponent, ConsultarDatosComponent, UsuariosComponent]
 })
 export class HomePageModule {}
