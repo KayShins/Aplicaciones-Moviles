@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { UsuariosComponent } from './usuarios.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('UsuariosComponent', () => {
   let component: UsuariosComponent;
@@ -9,6 +10,7 @@ describe('UsuariosComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      providers : [UsuariosComponent, provideHttpClient()],
       declarations: [ UsuariosComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
