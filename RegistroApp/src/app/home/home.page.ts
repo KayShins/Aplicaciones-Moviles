@@ -71,6 +71,9 @@ export class HomePage implements AfterViewInit {
   }
   
   navegarAMisDatos() {
+    console.log('Navegar con state:', {
+      username: this.username,
+    });
     this.router.navigate(['/mis-datos'], {
       state: {
         username: this.username,

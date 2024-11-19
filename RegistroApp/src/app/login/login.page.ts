@@ -20,28 +20,23 @@ export class LoginPage {
   ) {}
 
   async ingresar() {
-    // Validaciones
-    if(this.user.usuario==='Juan'&& this.user.password==='1234'){
+    if (this.user.usuario === 'Juan' && this.user.password === '1234') {
       const loading = await this.loadingController.create({
         message: 'Iniciando sesión...',
-        spinner: 'circles'
+        spinner: 'circles',
       });
       await loading.present();
-  
-      setTimeout(() => {
-        loading.dismiss();
-        this.router.navigate(['/home'], {
-          state: {
-            username: this.user.usuario,
-            password: this.user.password,
-          },
-        });
-      }, 2000); 
-    }else{
-      alert('Usuario o contraseña incorrecta')
+      
+      // Simula un retraso con una promesa
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      loading.dismiss();
+      this.router.navigate(['/home'], {
+        state: { username: this.user.usuario, password: this.user.password },
+      });
+    } else {
+      alert('Usuario o contraseña incorrecta');
     }
-
-    
   }
 
   // Mostrar una alerta

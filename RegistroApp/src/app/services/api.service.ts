@@ -12,7 +12,7 @@ export class ApiService {
     })
   }
 
-  private apiURL = 'https://jsonplaceholder.typicode.com';
+   apiURL = 'https://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient) {}
 

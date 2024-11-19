@@ -3,14 +3,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { UsuariosComponent } from './usuarios.component';
 import { provideHttpClient } from '@angular/common/http';
-
+import { ApiService } from '../services/api.service';
+import { of } from 'rxjs';
 describe('UsuariosComponent', () => {
   let component: UsuariosComponent;
   let fixture: ComponentFixture<UsuariosComponent>;
-
+  let apiService: ApiService;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      providers : [UsuariosComponent, provideHttpClient()],
+      providers : [UsuariosComponent, provideHttpClient(), ApiService],
       declarations: [ UsuariosComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
@@ -23,4 +24,5 @@ describe('UsuariosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
