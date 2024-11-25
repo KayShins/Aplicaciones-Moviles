@@ -14,6 +14,12 @@
     <ion-segment-button value="usuarios">
       <ion-label>Compañias</ion-label>
     </ion-segment-button>
+    <ion-segment-button value="scan">
+      <ion-label>Scan</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="qr-code">
+      <ion-label>Registrar Asistencia</ion-label>
+    </ion-segment-button>
     <ion-segment-button value="mis-datos">
       <ion-label>Mis Datos</ion-label>
     </ion-segment-button>
@@ -21,6 +27,8 @@
   <app-consultar-datos *ngIf="segment === 'consultar-datos'"></app-consultar-datos>
   <app-usuarios *ngIf="segment === 'usuarios'"></app-usuarios>
   <app-mis-datos *ngIf="segment === 'mis-datos'"></app-mis-datos>
+  <app-qr-code *ngIf="segment === 'qr-code'"></app-qr-code>
+  <app-scan *ngIf="segment === 'scan'"></app-scan>
   <router-outlet></router-outlet>
 </ion-content>
 

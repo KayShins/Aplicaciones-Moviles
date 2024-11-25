@@ -9,6 +9,10 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { MisDatosComponent } from '../mis-datos/mis-datos.component';
 import { ConsultarDatosComponent } from '../consultar-datos/consultar-datos.component';
 import { UsuariosComponent } from '../usuarios/usuarios.component';
+import { QrCodeModule } from 'ng-qrcode';
+import { QrCodeComponent } from '../qr-code/qr-code.component';
+import { ScanComponent } from '../scan/scan.component';
+import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,8 +20,9 @@ import { UsuariosComponent } from '../usuarios/usuarios.component';
     IonicModule,
     HomePageRoutingModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    QrCodeModule
   ],
-  declarations: [HomePage,MisDatosComponent, ConsultarDatosComponent, UsuariosComponent]
+  declarations: [HomePage,MisDatosComponent, ConsultarDatosComponent, UsuariosComponent,QrCodeComponent,ScanComponent,BarcodeScanningModalComponent]
 })
 export class HomePageModule {}

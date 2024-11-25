@@ -1,0 +1,16 @@
+<div id="qrImage">
+  <div class="d-flex-center">
+    <div class="d-flex-center qr-wrapper">
+      <qr-code *ngIf ="qrText" [value]="qrText" size="190" errorCorrectionLevel="M"></qr-code>
+      <img *ngIf ="!qrText" class="qr-placeholder" src="assets/images/qr.webp" alt="" width="200" height="200">
+    </div>
+  </div>
+  <div class="ion-padding-top"> {{qrText}}</div>
+</div>
+<ion-textarea label="Escribe algo para convertir el QR Code" labelPlacement="stacked" fill="outline" [(ngModel)]="qrText"> 
+</ion-textarea>
+
+<ion-button (click)="capturarScreen()" *ngIf ="qrText" class="submit ion-margin-top"  expand="block">
+  Compartir
+  <ion-icon slot="end" name="share-social-outline"></ion-icon>
+</ion-button>
