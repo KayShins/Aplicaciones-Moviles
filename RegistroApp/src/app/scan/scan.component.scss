@@ -1,0 +1,149 @@
+/* Estilo general para centrar los elementos */
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Estilo para el contenedor principal */
+  .qr-wrapper {
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    width: 90%;
+    max-width: 400px;
+    /* Aseguramos que el ancho no exceda el 100% de la pantalla */
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para la etiqueta de escaneo */
+  .scan-label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  /* Estilo para los botones */
+  ion-button.submit {
+    background: linear-gradient(to right, #38b2ac, #3182ce);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  /* Iconos en los botones */
+  ion-button.submit ion-icon {
+    font-size: 18px;
+  }
+  
+  /* Estilo para el resultado del escaneo */
+  .result {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 400px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+  }
+  
+  .result p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .result div {
+    font-size: 16px;
+    color: #2d3748;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+  
+  /* Botones dentro del resultado */
+  .result ion-buttons ion-button {
+    margin-left: 5px;
+    background: transparent;
+    color: #4a5568;
+  }
+  
+  .result ion-buttons ion-button:hover {
+    color: #2b6cb0;
+  }
+  
+  /* Estilo responsivo */
+  @media (max-width: 768px) {
+    /* Adaptar el tamaño del contenedor */
+    .qr-wrapper {
+      padding: 15px;
+      width: 95%;
+      margin: 15px auto;
+    }
+  
+    /* Asegurar que el resultado también ocupe el 95% del ancho */
+    .result {
+      width: 95%;
+    }
+  
+    /* Ajustar el tamaño de los botones */
+    ion-button.submit {
+      font-size: 16px;
+      padding: 12px 25px;
+    }
+  
+    .result ion-buttons ion-button {
+      font-size: 14px;
+    }
+  
+    /* Ajuste de márgenes y espaciado en pantallas pequeñas */
+    .scan-label {
+      font-size: 12px;
+      margin-top: 8px;
+    }
+  
+    .result p {
+      font-size: 12px;
+    }
+  
+    .result div {
+      font-size: 14px;
+    }
+  }
+  
+  /* Estilo adicional para pantallas muy pequeñas (por ejemplo, teléfonos en modo retrato) */
+  @media (max-width: 480px) {
+    /* Asegurar que todo el contenido sea accesible en pantallas pequeñas */
+    .qr-wrapper {
+      padding: 10px;
+      width: 100%;
+    }
+  
+    .result {
+      width: 100%;
+    }
+  
+    .result p {
+      font-size: 12px;
+    }
+  
+    .result div {
+      font-size: 14px;
+    }
+  
+    ion-button.submit {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  }
+  

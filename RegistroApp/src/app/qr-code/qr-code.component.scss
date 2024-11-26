@@ -1,0 +1,121 @@
+/* Estilo general para centrar todo */
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Estilo para el contenedor del QR Code */
+  .qr-wrapper {
+    margin: 20px 0;
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;  /* Asegura que el padding no afecte el ancho */
+  }
+  
+  /* Estilo para la imagen placeholder */
+  .qr-placeholder {
+    opacity: 0.5;
+    width: 100%;
+    max-width: 100%; /* Asegura que la imagen se ajuste al contenedor */
+  }
+  
+  /* Estilo para el texto debajo del QR Code */
+  .ion-padding-top {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  /* Estilo para el textarea */
+  ion-textarea {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    box-sizing: border-box;  /* Asegura que el padding no afecte el ancho */
+  }
+  
+  /* Estilo para el botón */
+  .submit {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: #fff;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-sizing: border-box;  /* Asegura que el padding no afecte el ancho */
+  }
+  
+  .submit ion-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  
+  /* Estilo responsivo */
+  @media (max-width: 768px) {
+    /* Ajustar el contenedor QR Code */
+    .qr-wrapper {
+      padding: 15px;
+      width: 95%;
+    }
+  
+    /* Ajustar el tamaño de los campos de texto y el botón */
+    ion-textarea, .submit {
+      width: 95%;
+    }
+  
+    /* Asegurar que el texto se vea bien en pantallas pequeñas */
+    .ion-padding-top {
+      font-size: 14px;
+    }
+  
+    /* Ajuste de la imagen del QR */
+    .qr-placeholder {
+      width: 80%;
+      max-width: 100%;
+    }
+  }
+  
+  /* Estilo adicional para pantallas pequeñas */
+  @media (max-width: 480px) {
+    /* Ajuste en pantallas muy pequeñas */
+    .qr-wrapper {
+      padding: 10px;
+      width: 100%;
+    }
+  
+    ion-textarea, .submit {
+      width: 100%;
+      margin: 15px auto;
+    }
+  
+    .submit {
+      padding: 10px 15px;
+    }
+  
+    .ion-padding-top {
+      font-size: 12px;
+    }
+  
+    .qr-placeholder {
+      width: 90%;
+      max-width: 100%;
+    }
+  }
+  

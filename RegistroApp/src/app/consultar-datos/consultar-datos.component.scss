@@ -1,41 +1,123 @@
-.alumno-info {
-    margin-top: 20px;
-  
-}
-
-.alumno-title {
-    margin-bottom: 10px;
-    font-size: 24px;
-    text-align: center;
-}
-
-.error-message {
-    color: red;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.button-group {
-    margin-top: 20px;
+/* Centrado de la página */
+ion-content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --background: #ecf0f1; /* Fondo suave para toda la página */
+}
+
+/* Estilo del RUT y el botón */
+.rut {
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+ion-input {
+    --padding-start: 10px;
+    --border-radius: 8px;
+    --background: #f9f9f9;
+    --placeholder-color: #b0bec5;
+    --color: #34495e;
 }
 
 ion-button {
-    margin-bottom: 10px;
+    --border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
 }
 
-ion-header {
-    ion-toolbar {
-      background-color: #3880ff; /* Color de fondo de la barra superior */
-      color: white;
-  
-      ion-title {
-        text-align: center; /* Centra el título */
-        font-size: 20px;
-        font-weight: bold;
-      }
+/* Estilo de la tarjeta con los datos */
+ion-card {
+    width: 90%;
+    max-width: 500px;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* Título del card */
+.alumno-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los items */
+ion-item {
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --background: #f5f5f5;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Fondo claro en los botones */
+ion-button[color="primary"] {
+    --background: #3498db;
+    --color: white;
+}
+
+ion-button[color="warning"] {
+    --background: #f39c12;
+    --color: white;
+}
+
+ion-button[color="danger"] {
+    --background: #e74c3c;
+    --color: white;
+}
+
+/* Estilo para mensajes de error */
+.error-message {
+    color: #e74c3c;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+    ion-card {
+        width: 90%;
+    }
+    ion-input {
+        font-size: 14px;
+    }
+    ion-button {
+        font-size: 14px;
+        padding: 8px 15px;
     }
 }
 
-  
+/* Estilo del botón Consultar */
+.botonguardar {
+    --border-radius: 8px;
+    --background: #2ecc71; /* Color verde suave */
+    --color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect para el botón Consultar */
+.botonguardar:hover {
+    --background: #27ae60; /* Color verde más oscuro al pasar el mouse */
+}
+
+/* Foco en el botón Consultar */
+.botonguardar:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5); /* Resalta el borde con un brillo verde */
+}
+
